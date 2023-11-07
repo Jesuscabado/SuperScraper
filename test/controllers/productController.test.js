@@ -1,6 +1,6 @@
-import productController from "../src/controllers/productController.js";
-import Product from "../src/models/productModel.js";
-import db from "../src/config/db.js";
+import productController from "../../src/controllers/productController.js";
+import Product from "../../src/models/productModel.js";
+import db from "../../src/config/db.js";
 
 let productId = null;
 describe("Test de productController", function() {

@@ -1,21 +1,22 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+
 dotenv.config();
 
-const hostName = process.env.DB_HOST || 'localhost';
-const port = process.env.DB_PORT || 27017;
-const dbName = process.env.DB_NAME || 'test';
+const DB_HOST = process.env.DB_HOST || 'localhost';
+const DB_PORT = process.env.DB_PORT || 27017;
+const DB_NAME = process.env.DB_NAME || 'test';
 
-const dbUrl = `mongodb://${hostName}:${port}/${dbName}`;
+const dbUrl = `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`;
 
 
-mongoose.connect(dbUrl);
+mongoose.connect(dbUrl).then(() => {
+    console.info('Connected to DB');
+}).catch((e) => {
+    console.error('Connection error', e.message);
+});
 
 const db = mongoose.connection;
 
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-    console.info('Connected to DB');
-});
 
 export default db;
