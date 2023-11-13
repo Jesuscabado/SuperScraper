@@ -6,6 +6,9 @@ describe("Tests del scraper de eroski",()=>{
         scraper =new Scraper();
         await scraper.promise;
     })
+    afterAll(async ()=>{
+        await scraper.browser.close();
+    });
     test("Conseguir el html de una url",async ()=>{
         const url = "https://supermercado.eroski.es/es/supermercado/2059698-frescos/2059872-fiambres-y-cocidos/"
         const html = await scraper.getHtml(url);

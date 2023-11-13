@@ -16,7 +16,11 @@ export default class Scraper {
     // Inicializa Puppeteer y configura el navegador.
     async init() {
         // Inicia el navegador Puppeteer de forma asíncrona.
-        this.browser = await puppeteer.launch();
+        this.browser = await puppeteer.launch({
+            product: 'firefox',
+            // Indica que el navegador no se ejecutará en modo headless (sin interfaz gráfica).
+            headless: false,
+        });
         // Indica que el scraper está listo para ser utilizado.
         this.isReady = true;
     }
@@ -31,6 +35,8 @@ export default class Scraper {
         await page.goto(url);
         // Obtiene el contenido HTML de la página.
         const html = await page.content();
+        // Guarda el contenido HTML en un archivo.
+        const showHtml = html.saveToFile("html.txt");
         // Cierra la página para liberar recursos.
         await page.close();
         // Devuelve el código HTML obtenido.

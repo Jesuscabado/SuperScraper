@@ -99,8 +99,8 @@ describe("Test de productController", function() {
     });
 
     // Operación después de todas las pruebas: Elimina todos los productos
-    afterAll( async function() {
+    /* afterAll( async function() {
         await Product.deleteMany();
-    });
+    }); */
 
 });
